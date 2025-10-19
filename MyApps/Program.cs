@@ -10,46 +10,30 @@ namespace MyApps
     {
         static void Main(string[] args)
         {
-            // Задание 1
-            Console.WriteLine("Задание 1");
-            int current = 0;
-            int next = 1;
-            int tmp;
-            for (int i = 0; i <= 9; i++)
-            {
-                Console.Write("{0} ", current);
-                tmp = current;
-                current = next;
-                next += tmp;
-            }
+            // конструктор с 1 аргументом
+            Weapon w = new Weapon("sword");
+            w.GetInfo();
 
-            // Задание 2
-            Console.WriteLine("\n\nЗадание 2");
-            for(int i = 2; i <= 20; i++)
-            {
-                if (i % 2 == 0) { Console.Write("{0} ", i); }
-            }
+            // конструктор с 3 аргументами
+            Weapon w1 = new Weapon("great sword", 1, 8);
+            w1.GetInfo();
+            Console.WriteLine(w1.GetDamage());
 
-            // Задание 3
-            Console.WriteLine("\n\nЗадание 3");
-            for(int i = 1; i <= 5; i++)
-            {
-                for(int j=1; j<=5; j++)
-                {
-                    Console.Write("{0} ", i * j);
-                }
-                Console.WriteLine();
-            }
+            // конструктор с 3 аргументами и перепутанными min и max
+            Weapon w2 = new Weapon("knife", 10, 2);
+            w2.GetInfo();
 
-            // Задание 4
-            Console.WriteLine("\nЗадание 4");
-            string password = "qwerty";
-            string user_password = "";
-            do {
-                Console.Write("Введите пароль: ");
-                user_password = Console.ReadLine();
-                if (user_password != password) { Console.WriteLine("Неправильный пароль"); }
-            } while (user_password != password);
+            // конструктор с 3 аргументами и неправильный min
+            Weapon w3 = new Weapon("knife", -1, 2);
+            w3.GetInfo();
+
+            // конструктор с 3 аргументами и неправильный max
+            Weapon w4 = new Weapon("knife", 1, 1);
+            w4.GetInfo();
+
+            // конструктор с 3 аргументами и все неправильно
+            Weapon w5 = new Weapon("bow", 0, -8);
+            w5.GetInfo();
         }
     }
 }
