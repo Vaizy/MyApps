@@ -34,6 +34,11 @@ namespace MyApps
             // конструктор с 3 аргументами и все неправильно
             Weapon w5 = new Weapon("bow", 0, -8);
             w5.GetInfo();
+
+
+            Unit u = new Unit();
+            Console.WriteLine(u.GetRealHealth());
+            Console.WriteLine(u.SetDamage(100));
         }
     }
 }
