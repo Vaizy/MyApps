@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MyApps
 {
@@ -124,25 +125,77 @@ namespace MyApps
                 public Node Next;
                 public Node Before;
 
-                public Node(int value, Node next, Node before)
-                {
-                    Value = value;
-                    Next = next;
-                    Before = before;
-                }
             }
 
 
             public void TaskLoop()
             {
                 Console.WriteLine("Для прерывания выполнения задачи введите \"quit\"");
-                Console.WriteLine("Введите от 3 до 6 чисел через пробел");
+                Console.WriteLine("Введите число");
+                Node node1 = new Node();
+                Node node2 = new Node();
+                Node node3 = new Node();        
+                Node node4 = new Node();    
                 var input = Console.ReadLine();
                 if (input == "quit") { return; }
                 else
                 {
-                    Array elements = input.Split(' ');
-                    Node node1 = new Node(elements[0], elements[1], null);
+                    node1.Value = int.Parse(input);
+                    node1.Next = null;
+                    node1.Before = null;
+                }
+                Console.WriteLine("Введите число");
+                input = Console.ReadLine();
+                if (input == "quit") { return; }
+                else
+                {
+                    node2.Value = int.Parse(input);
+                    node2.Next = null;
+                    node2.Before = node1;
+                    node1.Next = node2;
+                }
+                Console.WriteLine("Введите число");
+                input = Console.ReadLine();
+                if (input == "quit") { return; }
+                else
+                {
+                    node3.Value = int.Parse(input);
+                    node3.Next = null;
+                    node3.Before = node2;
+                    node2.Next = node3;
+                }
+                Console.WriteLine("Введите число");
+                input = Console.ReadLine();
+                if (input == "quit") { return; }
+                else
+                {
+                    node4.Value = int.Parse(input);
+                    node4.Next = null;
+                    node4.Before = node3;
+                    node3.Next = node4;
+                }
+                printList(node1);
+                printRevertedList(node4);
+            }
+
+            private void printList(Node firstNode)
+            {
+                Node next = firstNode;
+                Console.WriteLine("Текущий список в прямом порядке");
+                while (next != null) {
+                    Console.WriteLine(next.Value);
+                    next = next.Next;
+                }
+            }
+
+            private void printRevertedList(Node lastNode)
+            {
+                Node before = lastNode;
+                Console.WriteLine("Текущий список в обратном порядке");
+                while (before != null)
+                {
+                    Console.WriteLine(before.Value);
+                    before = before.Before;
                 }
             }
         }
@@ -180,7 +233,8 @@ namespace MyApps
 
         private static void CheckTaskThird()
         {
-            
+            var linkedListTask = new LinkedListTask();
+            linkedListTask.TaskLoop();
         }
     }
 }
