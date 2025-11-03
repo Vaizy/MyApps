@@ -12,19 +12,27 @@ namespace MyApps
         private float _health;
         public string Name { get; }
         public float Health => _health;
-        public int Damage{ get; }
+        public Interval Damage{ get; }
         public float Armor { get; set; }
 
         public Unit(): this("Unknown Unit")
         {
-            Damage = 5;
+            Damage = new Interval(0, 0);
             Armor = 0.6f;
-            //_health = 5f;
         }
 
         public Unit(string name)
         {
             Name = name;
+            Damage = new Interval(0, 0);
+            Armor = 0.6f;
+        }
+
+        public Unit(string name, int mindamage, int maxdamage)
+        { 
+            Name = name; 
+            Damage = new Interval(mindamage, maxdamage);
+            Armor = 0.6f;
         }
 
         public float GetRealHealth()
